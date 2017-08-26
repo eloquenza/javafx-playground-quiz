@@ -4,7 +4,7 @@ import java.util.Collections;
 public class QuestionFactory {
 
     public enum Topics {
-        HISTORY, MATH, RELIGION, POLITICS
+        HISTORY, MATH, RELIGION, POLITICS, OTHER
     }
 
     public static ArrayList<Question> createQuestions(Topics topic) {
@@ -23,6 +23,8 @@ public class QuestionFactory {
                 return ReligionQuestionsFactory.createQuestions();
             case POLITICS:
                 return PoliticsQuestionsFactory.createQuestions();
+            case OTHER:
+                return OtherQuestionsFactory.createQuestions();
         }
         return new ArrayList<Question>();
     }
