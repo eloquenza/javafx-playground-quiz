@@ -9,6 +9,7 @@ public class QuestionFactory {
 
     public static ArrayList<Question> createQuestions(Topics topic) {
         ArrayList<Question> list = createQuestionsImpl(topic);
+        Collections.shuffle(list);
         return list;
     }
 
