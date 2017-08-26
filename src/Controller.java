@@ -28,10 +28,14 @@ public class Controller {
     Node topicNode;
     Node questionNode;
 
+    final Label l = new Label("Quiz over!");
+    StackPane overlay;
+
     // Pay attention to volatile
     private static volatile Controller INSTANCE = null;
 
     private Controller() {
+        createOverlay();
     }
 
     public static Controller getInstance() {
@@ -43,6 +47,12 @@ public class Controller {
             }
         }
         return INSTANCE;
+    }
+
+    public void createOverlay() {
+        overlay = new StackPane();
+        StackPane.setAlignment(l, Pos.CENTER);
+        overlay.getChildren().add(l);
     }
 
     public void swapToQuestions() {
