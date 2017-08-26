@@ -28,7 +28,6 @@ public class Controller {
     Node topicNode;
     Node questionNode;
 
-
     // Pay attention to volatile
     private static volatile Controller INSTANCE = null;
 
@@ -45,4 +44,17 @@ public class Controller {
         }
         return INSTANCE;
     }
+
+    public void swapToQuestions() {
+        topics.setCenter(questionNode);
+    }
+
+    public void swapToTopics() {
+        topics.setCenter(topicNode);
+    }
+
+    public void swapToFinishOverlay() {
+        topics.setCenter(overlay);
+    }
+
 }
