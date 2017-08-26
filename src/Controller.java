@@ -74,4 +74,10 @@ public class Controller {
         topics.setCenter(overlay);
     }
 
+    public void startQuiz(QuestionFactory.Topics topic) {
+        fadeIntoScene(Duration.millis(2000), questionNode);
+        swapToQuestions();
+        qc.prepQuiz(topic);
+    }
+
 }
