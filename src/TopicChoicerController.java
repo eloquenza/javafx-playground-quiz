@@ -28,6 +28,16 @@ public class TopicChoicerController {
                 cont.startQuiz(QuestionFactory.Topics.HISTORY);
             }
         });
+        restart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                restart();
+            }
+        });
     }
 
+    private void restart() {
+        Controller cont = Controller.getInstance();
+        cont.resetQuiz();
+    }
 }
