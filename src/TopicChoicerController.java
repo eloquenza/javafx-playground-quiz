@@ -28,6 +28,30 @@ public class TopicChoicerController {
                 cont.startQuiz(QuestionFactory.Topics.HISTORY);
             }
         });
+        religionBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                cont.startQuiz(QuestionFactory.Topics.RELIGION);
+            }
+        });
+        mathBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                cont.startQuiz(QuestionFactory.Topics.MATH);
+            }
+        });
+        politicsBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                cont.startQuiz(QuestionFactory.Topics.POLITICS);
+            }
+        });
+        swapmeBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                cont.startQuiz(QuestionFactory.Topics.OTHER);
+            }
+        });
         restart.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
