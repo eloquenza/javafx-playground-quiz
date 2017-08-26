@@ -55,6 +55,13 @@ public class Controller {
         overlay.getChildren().add(l);
     }
 
+    public void fadeIntoScene(Duration time, Node node) {
+        FadeTransition ft = new FadeTransition(time, node);
+        ft.setFromValue(0.0);
+        ft.setToValue(1.0);
+        ft.play();
+    }
+
     public void swapToQuestions() {
         topics.setCenter(questionNode);
     }
