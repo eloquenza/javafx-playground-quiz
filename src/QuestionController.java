@@ -37,11 +37,45 @@ public class QuestionController {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     if (((Button )actionEvent.getSource()).getText() == currentQuestion.right_answer) {
+                        fadeButtonBackground(btn, true);
                         transitionIntoNextQuestion();
+                    } else {
+                        fadeButtonBackground(btn, false);
                     }
                 }
             });
         }
+    }
+
+    private void transitionIntoNextQuestion() {
+        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        delay.setOnFinished( event -> {
+            setNextQuestion();
+        } );
+        delay.play();
+    }
+
+    private void fadeButtonBackground(Button btn, boolean green) {
+        String backGroundCSS = "-fx-background-color: rgb(";
+        if (green) {
+            backGroundCSS += "0,%f,0);";
+        } else {
+            backGroundCSS += "%f,0,0);";
+        }
+        final DoubleProperty color = new SimpleDoubleProperty(0);
+        btn.styleProperty().bind(
+                Bindings.format(backGroundCSS, color)
+        );
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(color, 40)),
+                new KeyFrame(Duration.millis(100), new KeyValue(color, 80)),
+                new KeyFrame(Duration.millis(200), new KeyValue(color, 100)),
+                new KeyFrame(Duration.millis(300), new KeyValue(color, 150)),
+                new KeyFrame(Duration.millis(400), new KeyValue(color, 200)),
+                new KeyFrame(Duration.millis(500), new KeyValue(color, 255))
+        );
+        timeline.play();
     }
 
     @FXML
@@ -51,6 +85,7 @@ public class QuestionController {
 
     public void setNextQuestion() {
         if (!list.isEmpty()) {
+            resetAnswerButtons();
             setCurrentQuestion();
             setQuestionText();
         }
@@ -68,8 +103,16 @@ public class QuestionController {
         answerD.setText(currentQuestion.answers.get(3));
     }
 
+    public void resetAnswerButtons() {
+        for (Button btn : answerList) {
+            btn.styleProperty().unbind();
+            btn.setStyle(null);
+        }
+    }
+
     public void resetQuiz() {
         list.clear();
+        resetAnswerButtons();
     }
 
     public void prepQuiz(QuestionFactory.Topics topic) {
