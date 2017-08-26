@@ -74,10 +74,25 @@ public class Controller {
         topics.setCenter(overlay);
     }
 
+    public void resetQuiz() {
+        qc.resetQuiz();
+        swapToTopics();
+    }
+
     public void startQuiz(QuestionFactory.Topics topic) {
         fadeIntoScene(Duration.millis(2000), questionNode);
         swapToQuestions();
         qc.prepQuiz(topic);
     }
 
+    public void finishQuiz() {
+        fadeIntoScene(Duration.millis(1500), overlay);
+        swapToFinishOverlay();
+        PauseTransition delay = new PauseTransition(Duration.seconds(4));
+        delay.setOnFinished( event -> {
+            fadeIntoScene(Duration.millis(1500), topicNode);
+            swapToTopics();
+        } );
+        delay.play();
+    }
 }

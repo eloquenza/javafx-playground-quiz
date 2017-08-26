@@ -88,6 +88,9 @@ public class QuestionController {
             resetAnswerButtons();
             setCurrentQuestion();
             setQuestionText();
+        } else {
+            Controller cont = Controller.getInstance();
+            cont.finishQuiz();
         }
     }
 
