@@ -12,5 +12,6 @@ public class Question {
         qstn = question;
         right_answer = answers[0];
         this.answers = Arrays.asList(answers);
+        Collections.shuffle(this.answers);
     }
 }
